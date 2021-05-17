@@ -63,7 +63,8 @@ public class HelloMoniqueView extends Div implements BeforeEnterObserver {
     private SamplePersonService samplePersonService;
 
     public HelloMoniqueView(@Autowired SamplePersonService samplePersonService) {
-        this.samplePersonService = samplePersonService;
+    //public HelloMoniqueView() {
+        //this.samplePersonService = samplePersonService;
         addClassName("hello-monique-view");
         // Create UI
         SplitLayout splitLayout = new SplitLayout();
@@ -100,8 +101,11 @@ public class HelloMoniqueView extends Div implements BeforeEnterObserver {
             }
         });
 
+        
+        
         // Configure Form
         binder = new BeanValidationBinder<>(SamplePerson.class);
+        //Binder<Contact> binder = new BeanValidationBinder<>(Contact.class);
 
         // Bind fields. This where you'd define e.g. validation rules
 

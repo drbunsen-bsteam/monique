@@ -1,7 +1,9 @@
 package com.example.application.views.main;
 
+import com.example.application.views.dashboard.DashboardView;
 import java.util.Optional;
 
+import com.example.application.views.itemform.ItemFormView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -17,14 +19,14 @@ import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
-import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.example.application.views.main.MainView;
 import com.example.application.views.hellomonique.HelloMoniqueView;
-import com.example.application.views.about.AboutView;
+import com.example.application.views.input.InputFormView;
+import com.example.application.views.serviceentry.ServiceEntryView;
+import com.example.application.views.stopwatch.StopWatchView;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.Anchor;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -39,6 +41,18 @@ public class MainView extends AppLayout {
 
     public MainView() {
         setPrimarySection(Section.DRAWER);
+        H1 logo = new H1("Monica 7.0");
+        logo.addClassName("logo");
+
+        Anchor logout = new Anchor("logout", "Log out");
+
+        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, logout);
+        header.expand(logo);
+        header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
+        header.setWidth("100%");
+        header.addClassName("header");
+
+        //addToNavbar(header);
         addToNavbar(true, createHeaderContent());
         menu = createMenu();
         addToDrawer(createDrawerContent(menu));
@@ -84,7 +98,17 @@ public class MainView extends AppLayout {
     }
 
     private Component[] createMenuItems() {
-        return new Tab[]{createTab("Hello Monique", HelloMoniqueView.class), createTab("About", AboutView.class)};
+        return new Tab[]{
+            createTab("Stop Watch", StopWatchView.class),
+            createTab("Dashboard", DashboardView.class)
+            /*createTab("About", ServiceEntryView.class),
+            createTab("Item Form", ItemFormView.class),
+            createTab("InputForm", InputFormView.class),
+            createTab("Service Entry", ServiceEntryView.class),
+            createTab("Hello Monique", HelloMoniqueView.class)
+*/
+
+        };
     }
 
     private static Tab createTab(String text, Class<? extends Component> navigationTarget) {

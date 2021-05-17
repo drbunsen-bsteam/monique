@@ -1,0 +1,10 @@
+# When text is set to "auto", the path (*) is marked for automatic end-of-line normalization.
+# If git decides that the content is text, its line endings are normalized to LF on checkin.
+# This ensures that all files that git considers to be text will have normalized (LF) line endings in the repository.
+# This setting overwrites any user specific core.autocrlf settings.
+# 
+# In Other words:
+# When someone commits a file, Git guesses whether that file is a text file or not.
+# If it is text, git will commit a version of the file where all CR + LF bytes are replaced with LF bytes. 
+
+* text=auto 
